@@ -1,0 +1,296 @@
+1)¿Que significado tiene la salida? nil , por lo que es nula .
+
+21. ¿Qué diferencia hay entre "\t\n" y ’\t\n’? 
+Comilla doble → => "\t\n" 
+Comilla simple → "\\t\\n" 
+
+22. ¿Cómo funciona %q? ¿Qué es %q{hello world\n}? ¿Qué es %q{’a’ ’b’ ’c’}? 
+Agrega comillas simples a la notación. (se supone a mi me salen dobles con %q y 
+%Q.)
+"hello wordl\\n" y 
+“ 'a' 'b' 'c' “ 
+
+23. ¿Cómo funciona %Q? ¿Qué es %Q{hello world\n}? ¿Qué es %Q{"a" "b" "c"}? 
+Se supone que este añade comillas dobles pero me funciona exactamente igual 
+que el anterior. 
+
+24. ¿Qué queda en c? 
+irb(main):001:0> a = 4 
+=> 4 
+irb(main):002:0> b =2 
+=> 2 
+irb(main):003:0> c = <<HERE 
+irb(main):004:0" --#{a}- 
+irb(main):005:0" 
+--#{b}-irb(main):006:0" 
+HERE 
+Queda "--4--\n--2--\n" 
+
+25. ¿Qué queda en c? 
+irb(main):001:0> a = 4 
+=> 4 
+irb(main):002:0> b =2 
+=> 2 
+irb(main):008:0> c = <<’HERE’ 
+irb(main):009:0’ --#{a}- 
+irb(main):010:0’--#{b}- 
+irb(main):011:0’ 
+HERE 
+Queda "--\#{a}--\n--\#{b}--\n" 
+
+26. s = "hello". ¿Cual es el valor de las siguientes expresiones? 
+S[0,2] → “he” 
+s[-1,1] → “o” 
+s[0,10] → “hello” 
+
+27. ¿Qué queda en g? 
+>> g = "hello" 
+=> "hello" 
+>> g << " world" 
+Queda helloword. 
+
+28. ¿Qué queda en e? 
+>> e = ’.’*3 
+Queda en e= ... 
+
+29. ¿Cual es el resultado? 
+>> a = 1 
+=> 1 
+>> "#{a=a+1} "*3 
+Me da error. 
+
+30. ¿Qué es esto? %w[this is a test] 
+Pone entre doble comilla las palabras del array. ["this", "is", "a", "test"] 
+
+31. ¿Qué es esto? %w[\t \n] 
+Lo mismo pone entre comillas lo que está dentro del array. [“\t” “ \n”] 
+
+32. ¿Qué es esto? %W[\t \n] 
+Hace lo mismo que el anterior. 
+
+33. ¿Qué contiene nils? nils = Array.new(3) 
+Son la cadena vacia. [nil, nil, nil] 
+
+34. ¿Qué contiene zeros? zeros = Array.new(3, 0) 
+[0, 0, 0] 
+
+35. ¿Qué queda en b? 
+>> x = [[1,2],[3,4]] 
+=> [[1, 2], [3, 4]] 
+>> b = Array.new(x) 
+Queda [[1, 2], [3, 4]] . 
+36. ¿Qué queda en c? 
+>> c = Array.new(3) { |i| 2*i } 
+Queda [0,2,4]. 
+
+37. ¿Cual es el resultado de cada una de estas operaciones? 
+>> a = (’a’..’e’).to_a 
+=> ["a", "b", "c", "d", "e"] 
+>> a[1,1] 
+=> [“b”] 
+>> a[-2,2] 
+=>[“d”,”e”] 
+>> a[0..2] 
+=>[“a”, “b”, “c”] 
+>> a[0...1] 
+=>[“a”] 
+>> a[-2..-1] 
+=>[“d”,”e”] 
+
+38. ¿Cual es el resultado de cada una de estas operaciones? 
+>> a 
+=> ["a", "b", "c", "d", "e"] 
+>> a[0,2] = %w{A B} 
+=> ["A", "B"] 
+>> a 
+=>[“A”, “B” ,”c”,”d”,”e”] 
+>> a[2..5] = %w{C D E} 
+=> ["C", "D", "E"] 
+>> a 
+=>[“A”,”B”,”C”,”D”,”E”] 
+>> a[0,0] = [1,2,3] 
+=> [1, 2, 3] 
+>> a 
+=>[1, 2, 3, "A", "B", "C", "D", "E"] 
+>> a[0,2] = [] 
+=> [] 
+>> a 
+=>[3, "A", "B", "C", "D", "E"] 
+>> a[-1,1] = [ ’Z’ ] 
+=> ["Z"] 
+>> a 
+=>[3, "A", "B", "C", "D", "Z"] 
+>> a[-2,2] = nil 
+=> nil 
+>> a 
+=>[3, "A", "B", "C"] 
+
+39. ¿Cu ́al es el resultado de cada una de estas operaciones? 
+>> a = (1...4).to_a 
+=>[1,2,3] 
+>> a = a + [4, 5] 
+=>[1, 2, 3, 4, 5] 
+>> a += [[6, 7, 8]] 
+=>[1, 2, 3, 4, 5, [6, 7, 8]] 
+>> a = a + 9 
+
+40. ¿Cuál es el resultado de cada una de estas operaciones? 
+>> x = %w{a b c b a} 
+=>[“a”,”b”,”c”,”b”,”a”] 
+>> x = x - %w{b c d} 
+=>[“a” ,”a”] 
+
+41. ¿Cuál es el resultado de cada una de estas operaciones? 
+>> z = [0]*8 
+=>[0, 0, 0, 0, 0, 0, 0, 0] 
+
+42. ¿Cuál es el resultado de cada una de estas operaciones? 
+>> a = [] 
+=> [] 
+>> a << 1 
+=>[1] 
+>> a << 2 << 3 
+=>[1,2,3] 
+>> a << [4, 5, 6] 
+=>[1,2,3,[4,5,6]] 
+>> a.concat [7, 8] 
+=>[1,2,3,[4,5,6],7,8] 
+
+43. ¿Cuál es el resultado de cada una de estas operaciones? 
+>> a = [1, 1, 2, 2, 3, 3, 4] 
+=> [1, 1, 2, 2, 3, 3, 4] 
+>> b = [5, 5, 4, 4, 3, 3, 2] 
+=> [5, 5, 4, 4, 3, 3, 2] 
+>> c = a | b 
+=>[1,2,3,4,5] 
+>> d = b | a 
+=>[5,4,3,2,1] 
+>> e = a & b 
+=>[3,4] 
+>> f = b & a 
+=>[4,3] 
+
+44. ¿Qué resultados dan las siguientes operaciones? 
+>> a = 1..10 
+=> 1..10 
+>> a.class 
+=> Range 
+>> a.to_a 
+=>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+>> b = 1...10 
+=> 1....10 
+>> b.to_a 
+=>[5, 5, 4, 4, 3, 3, 4] 
+>> b.include? 10 
+=>false 
+>> b.include? 8 
+=>false 
+>> b.step(2) {|x| print "#{x} " } → ¡¡me da error!! 
+>> 1..3.to_a 
+
+45. ¿Qué resultados dan las siguientes operaciones? 
+>> r = 0...100 
+=> 0....100 
+>> r.member? 50 
+=>true 
+>> r.include? 99.9 
+=>true 
+>> r.member? 99.9 
+=>true 
+
+46. ¿Qué resultados dan las siguientes operaciones? 
+>> true.class 
+=>TrueClass 
+>> false.class 
+=>FalseClass 
+>> puts "hello" if 0 
+hello 
+=> nil 
+>> puts "hello" if nil 
+nil 
+>> puts "hello" if "" 
+>>hello 
+nil 
+47. ¿Qué resultados dan las siguientes operaciones? 
+>> x = :sym 
+=> :sym 
+>> x.class 
+=>Symbol 
+>> x == ’sym’ 
+=>false 
+>> x == :sym 
+=>true 
+>> z = :’a long symbol’ 
+=> :"a long symbol" 
+>> z.class 
+=>Symbol 
+>> x == ’sym’.to_sym 
+=>true 
+>> x.to_s == ’sym’ 
+=>false 
+
+48. ¿Qué resultados se dan? 
+>> s = "Ruby" 
+=> "Ruby" 
+>> t = s 
+=> "Ruby" 
+>> t[-1] = "" 
+=> "" 
+>> print s “Rub” => nil 
+>> t = "Java" 
+=> "Java" 
+>> print s, t RubJava=> nil 
+
+49. ¿Cuál es el resultado? 
+>> "%d %s" % [3, "rubies"] 
+=>"3 rubies" 
+
+50. ¿Cuáles son los resultados? 
+>> x, y = 4, 5 
+=>[4, 5] 
+>> z = x > y ? x : y 
+=>5 
+>> x,y,z = [1,2,3] 
+=>[1, 2, 3] 
+
+51. ¿Quéresultados dan las siguientes operaciones? 
+>> x = { :a => 1, :b => 2 } 
+=> {:b=>2, :a=>1} 
+>> x.keys 
+=>[:b, :a] 
+>> x.values 
+=>[2, 1] 
+>> x[:c] = 3 
+=> 3 
+>> x 
+=>{:b=>2, :c=>3, :a=>1} 
+>> x.delete(’a’) 
+=> nil 
+>> x 
+=> 
+>> x.delete(:a) 
+=> 1 
+>> x 
+=>{:b=>2, :c=>3} 
+>> x = { :a => 1, :b => 2, :c => 4 } 
+=> {:b=>2, :c=>4, :a=>1} 
+>> x.delete_if { |k,v| v % 2 == 0 } 
+>> x 
+=>{:a=>1} 
+
+52.¿Qué hace yield 4, 5? 
+FALTA
+
+53. ¿Qué hace la siguiente sentencia? counts = Hash.new(0) ¿Quédiferencia hay 
+con la asignación counts = {}? 
+Hace esto {}.Que uno es un hash y el otro es una valor asignado a la variables 
+counts. 
+
+54. ¿Qué retorna esta expresién? ’hello world, hello LPP’.scan /\w+/ 
+Retorna: ["hello", "world", "hello", "LPP"] . 
+
+55. Explique que hacen estas sentencias: 
+c = { :a => 3, :b => 2, :c => 1 } 
+c.keys.sort.each { |k| puts c[k] } 
+1oCrea un hash con sus valores y claves correspondientes. 
+2oMe da error sort XD 
